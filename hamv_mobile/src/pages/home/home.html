@@ -1,0 +1,66 @@
+<ion-header no-border>
+  <ion-navbar color="white">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <img class="center-logo" [src]="themeService.navbarLogoUrl" [ngClass]="{'center-logo-ios': isIOS() }">
+    <ion-buttons right>
+      <button ion-button icon-only (click)="refreshData()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="goAddDevice()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="!_deviceList || _deviceList.length === 0" class="empty" padding>
+    <div class="no-groups-image">
+      <ion-icon isActive="false" name="add"></ion-icon>
+    </div>
+    <h4>{{ 'MY_DEVICES.EMPTY_DASHBOARD' | translate }}</h4>
+    <button ion-button color="primary" class="full-button" round full (click)="goAddDevice()">{{ 'MY_DEVICES.ADD_PRODUCT' | translate: { productName: themeService.productName } }}</button>
+  </div>
+  <ion-card [ngClass]="{'is-owner': isOwner}" *ngFor="let deviceItem of _deviceList">
+    <ion-card-content>
+      <div class="popit-title" margin-bottom>
+        <ion-card-title (click)="toggleDetails(deviceItem)">
+          {{ deviceItem?._device?.properties?.displayName || deviceItem?._device?.profile?.esh?.model }}
+          <font class="popit-sub-title" color="grey" *ngIf="!deviceItem.showDetails">▼</font>
+          <font class="popit-sub-title" color="primary" *ngIf="deviceItem.showDetails">▲</font>
+        </ion-card-title>
+        <img class="popit-fab" src="assets/img/btn_connected.png" *ngIf="deviceItem.viewState.isConnected && !deviceItem.showDetails">
+        <img class="popit-fab" src="assets/img/btn_disconnected.png" *ngIf="!deviceItem.viewState.isConnected && !deviceItem.showDetails">
+      </div>
+      <br>
+      <br>
+      <div *ngFor="let m of deviceItem.popitPopular; let i = index;">
+        <ui-component (exoChange)="sendCommands(deviceItem,$event)" [(ngModel)]="deviceItem.viewState" [disabled]="!deviceItem.viewState.isConnected"
+          [model]="m" color="primary"></ui-component>
+        <div *ngIf="i < deviceItem.popitPopular.length - 1">
+          <br>
+        </div>
+      </div>
+      <div class="popit-content" *ngIf="deviceItem.showDetails">
+        <div class="control-item-divider-first">
+        </div>
+        <div *ngFor="let m of deviceItem.popitExpanded">
+          <ui-component (exoChange)="sendCommands(deviceItem,$event)" [(ngModel)]="deviceItem.viewState" [disabled]="!deviceItem.viewState.isConnected"
+            [model]="m" color="primary" *ngIf="isVisable(deviceItem.viewState[m.models[0].key])"></ui-component>
+          <div class="control-item-divider" *ngIf="isVisable(deviceItem.viewState[m.models[0].key])"></div>
+        </div>
+        <div class="popit-other-items">
+          <button ion-button class="other-item" color="warmGrey" round (click)="openSettings(deviceItem)">
+            {{ 'POPIT_CONTAINER.SETTINGS' | translate }}
+          </button>
+        </div>
+      </div>
+    </ion-card-content>
+    <!-- <button ion-button class="full-button" full class="popit-expand-button" color="primary" (click)="toggleDetails(deviceItem)">
+      {{ !deviceItem.showDetails ? ('POPIT_CONTAINER.MORE_CONTROLS' | translate) : ('POPIT_CONTAINER.CLOSE' | translate) }}
+    </button> -->
+  </ion-card>
+</ion-content>

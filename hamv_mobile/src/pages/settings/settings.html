@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title><font color="primary">{{ 'SETTINGS.SETTINGS' | translate }}</font></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="page-spaces" ion-fixed>
+    <!-- <span class="section-text">{{ 'SETTINGS.CONNECTIONS' | translate }}</span>
+    <button ion-button color="primary" class="full-button" full round icon-left (click)="goAmazonEchoPage()" margin-top>
+      <i class="fab fa-amazon text-icon"></i>
+      {{ 'SETTINGS.AMAZON_ECHO' | translate }}
+    </button>
+    <button ion-button color="primary" class="full-button" full round icon-left (click)="goIftttPage()" margin-top>
+      {{ 'SETTINGS.IFTTT' | translate }}
+    </button>
+    <button ion-button color="primary" class="full-button" full round icon-left (click)="goGoogleHomePage()" margin-vertical>
+      <i class="fab fa-google text-icon"></i>
+      {{ 'SETTINGS.GOOGLE_HOME' | translate }}
+    </button> -->
+    <span class="section-text">{{ 'SETTINGS.ACCOUNT' | translate }}</span>
+    <button *ngIf="supportLangs.length > 1" (click)="languageSelect()" ion-button color="primary" class="full-button" full round icon-left margin-top>
+      <i class="fas fa-language text-icon"></i>
+      {{ 'SETTINGS.LANGUAGE' | translate }}
+    </button>
+    <button *ngIf="!appConfig.app.disableLog" ion-button color="primary" class="full-button" full round icon-left send-log-report margin-top>
+      <i class="far fa-envelope-open text-icon"></i>
+      {{ 'SETTINGS.SEND_FEEDBACK' | translate }}
+    </button>
+    <div class="divider">
+    </div>
+    <button (click)="logout()" ion-button color="warningRed" class="full-button" full round margin-top>
+      {{ 'SETTINGS.LOG_OUT' | translate }}
+    </button>
+  </div>
+</ion-content>

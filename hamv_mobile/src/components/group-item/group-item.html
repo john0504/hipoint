@@ -1,0 +1,15 @@
+<div *ngIf="!devices || devices.length === 0; else showDevices" class="empty" padding>
+  <div class="no-groups-image">
+    <img [src]="themeService.logoUrl" />
+  </div>
+  <h4>{{ 'GROUP_ITEM.NO_DEVICES' | translate }}</h4>
+  <button ion-button color="primary" class="full-button" round full (click)="goToGroupsPage()">{{ 'GROUP_ITEM.GO_GROUPS' | translate }}</button>
+  <extra-page-space></extra-page-space>
+</div>
+<ng-template #showDevices>
+  <div class="group-container">
+    <ng-content></ng-content>
+    <device-item *ngFor="let d of devices" [device]="d"></device-item>
+  </div>
+  <extra-page-space></extra-page-space>
+</ng-template>

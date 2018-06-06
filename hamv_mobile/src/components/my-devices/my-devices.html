@@ -1,0 +1,12 @@
+<div *ngIf="!myDevicesGroup || myDevicesGroup.devices.length === 0; else showGroups" class="empty" padding>
+  <div class="no-devices-image">
+    <img [src]="themeService.logoUrl" />
+  </div>
+  <h4>{{ 'MY_DEVICES.EMPTY_DASHBOARD' | translate }}</h4>
+  <button ion-button color="primary" class="full-button" round full (click)="goAddDevice()">{{ 'MY_DEVICES.ADD_PRODUCT' | translate: { productName: themeService.productName } }}</button>
+</div>
+<ng-template #showGroups>
+  <group-item [group]="myDevicesGroup">
+    <group-control-panel [group]="myDevicesGroup" *ngIf="myDevicesGroup?.devices.length > 1"></group-control-panel>
+  </group-item>
+</ng-template>

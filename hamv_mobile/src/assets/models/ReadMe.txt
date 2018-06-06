@@ -1,0 +1,3 @@
+修改Information model之後
+請記得一定要修改model.json內的timestamp(套用當前的timestamp)
+否則App將不會自動更新information model

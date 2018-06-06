@@ -1,0 +1,55 @@
+<button
+  *ngIf="viewState?.isDeviceUpdating"
+  (click)="showInfo()"
+  class="full-button updating-button"
+  color="dark"
+  full
+  ion-button
+>
+  {{ 'POPIT_CONTAINER.UPDATING' | translate }}
+  <ion-icon ios="ios-information-circle" md="ios-information-circle-outline"></ion-icon>
+</button>
+<div [ngClass]="{'is-owner': isOwner}" class="popit-container-content">
+  <div class="popit-title" margin-bottom>
+    <ion-card-title>
+      {{ _device?.properties?.displayName || _device?.profile?.esh?.model }}
+    </ion-card-title>
+    <!-- <button (click)="openSchedule()" class="popit-fab" icon-only ion-button>
+      <ion-icon name="schedules"></ion-icon>
+    </button> -->
+  </div>
+  <div *ngFor="let m of popitPopular; let i = index;">
+    <ui-component
+      (exoChange)="sendCommands($event)"
+      [(ngModel)]="viewState.status"
+      [disabled]="!viewState.isConnected || viewState.isDeviceUpdating"
+      [model]="m"
+      color="primary"
+    ></ui-component>
+    <div *ngIf="i < popitPopular.length - 1" class="control-item-divider"></div>
+  </div>
+  <div class="popit-content" *ngIf="viewState.showDetails">
+    <div class="control-item-divider"></div>
+    <div *ngFor="let m of popitExpanded">
+      <ui-component
+        (exoChange)="sendCommands($event)"
+        [(ngModel)]="viewState.status"
+        [disabled]="!viewState.isConnected || viewState.isDeviceUpdating"
+        [model]="m"
+        color="primary"
+      ></ui-component>
+      <div class="control-item-divider"></div>
+    </div>
+    <div class="popit-other-items">
+      <button ion-button class="other-item" color="warmGrey" round (click)="openSettings()">
+        {{ 'POPIT_CONTAINER.SETTINGS' | translate }}
+      </button>
+      <!-- <button *ngIf="isOwner" ion-button class="other-item" color="warmGrey" round (click)="openSharing()">
+        {{ 'POPIT_CONTAINER.SHARE' | translate }}
+      </button> -->
+    </div>
+  </div>
+</div>
+<button ion-button class="full-button" full class="popit-expand-button" color="primary" (click)="toggleDetails()">
+  {{ !viewState.showDetails ? ('POPIT_CONTAINER.MORE_CONTROLS' | translate) : ('POPIT_CONTAINER.CLOSE' | translate) }}
+</button>

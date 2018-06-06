@@ -1,0 +1,39 @@
+page-about {
+  .page-spaces {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 24px;
+    width: 100%;
+    .logo {
+      width: 80%;
+    }
+    .ecobear-logo {
+      width: 45%;
+    }
+    h2 {      
+      font-size: 1.7rem;
+    }
+  }
+
+  .section-text {
+    font-size: 1.4rem;
+    font-weight: 900;
+    width: 100%;
+
+    &:not(:first-child) {
+      margin-top: 36px;
+    }
+  }
+
+  .text-icon {
+    font-size: 1.8rem;
+    right: 15px;
+    position: relative;
+  }
+  .footer {    
+    position:absolute;
+    bottom:0px;
+  }
+}

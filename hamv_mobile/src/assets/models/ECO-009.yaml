@@ -1,0 +1,95 @@
+---
+familyName: ECO-009
+familyMembers:
+- ECO-009.*
+controlLayout:
+  primary:
+  - IAQ
+  - TICK
+  secondary:
+  - TEMP_BARCHART
+  - HUMI_BARCHART
+  - CO2_BARCHART
+  - TVOC_BARCHART
+scheduleLayout:
+  primary:
+  - TEMP_BARCHART
+deviceId: 100
+components:
+  IAQ:
+    type: aqi-text
+    title: INFORMATION_MODEL.IAQ
+    models:
+    - key: iaq
+      values:
+        func: aqi
+  TICK:
+    type: text
+    title: ''
+    models:
+    - key: tick
+      values:
+        func: time
+  TEMP_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.TEMPERATURE
+    models:
+    - key: temperature
+      values:
+        func: tempCelsius
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 28
+  HUMI_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.HUMIDITY
+    models:
+    - key: humidity
+      values:
+        func: humidity
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+  CO2_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.CO2
+    models:
+    - key: co2
+      values:
+        func: co2
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 35
+  TVOC_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.TVOC
+    models:
+    - key: tvoc
+      values:
+        func: tvoc
+      options: 
+        sammpling: 60
+        ratio: 1000
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 560        
+  PAR_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.PAR
+    models:
+    - key: par
+      values:
+        func: par
+      options: 
+        sammpling: 60
+        ratio: 1000
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"

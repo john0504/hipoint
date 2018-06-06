@@ -1,0 +1,28 @@
+page-settings {
+  .page-spaces {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .section-text {
+    font-size: 1.4rem;
+    font-weight: 900;
+    width: 100%;
+
+    &:not(:first-child) {
+      margin-top: 36px;
+    }
+  }
+  .divider {
+    height: 300px;
+  }
+
+  .text-icon {
+    font-size: 1.8rem;
+    right: 15px;
+    position: relative;
+  }
+}

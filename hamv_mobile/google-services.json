@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "356827148629",
+    "firebase_url": "https://test-project-32f7c.firebaseio.com",
+    "project_id": "test-project-32f7c",
+    "storage_bucket": "test-project-32f7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356827148629:android:f42f3e3cc4766bbd",
+        "android_client_info": {
+          "package_name": "com.tenx.hipoint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356827148629-k918bbe7fskkibka6gv11htp2uangukr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs2fHWF0IMEQSGCLQQ-UlyAD7qskPpCxQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,155 @@
+---
+familyName: ECO-008
+familyMembers:
+- ECO-008.*
+controlLayout:
+  primary:
+  - IAQ
+  - TICK
+  secondary:
+  - TEMP_BARCHART
+  - HUMI_BARCHART
+  - PM25_BARCHART
+  - PM10_BARCHART
+  - CO_BARCHART
+  - CO2_BARCHART
+  - TVOC_BARCHART
+  - HCHO_BARCHART
+  - O3_BARCHART
+scheduleLayout:
+  primary:
+  - TEMP_BARCHART
+deviceId: 100
+components:
+  IAQ:
+    type: aqi-text
+    title: INFORMATION_MODEL.IAQ
+    models:
+    - key: iaq
+      values:
+        func: aqi
+  TICK:
+    type: text
+    title: ''
+    models:
+    - key: tick
+      values:
+        func: time
+  TEMP_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.TEMPERATURE
+    models:
+    - key: temperature
+      values:
+        func: tempCelsius
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 28
+  HUMI_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.HUMIDITY
+    models:
+    - key: humidity
+      values:
+        func: humidity
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+  PM25_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.PM25
+    models:
+    - key: pm25
+      values:
+        func: pm25
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 35
+  PM10_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.PM10
+    models:
+    - key: pm10
+      values:
+        func: pm10
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 75
+  CO_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.CO
+    models:
+    - key: co
+      values:
+        func: co
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 35
+  CO2_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.CO2
+    models:
+    - key: co2
+      values:
+        func: co2
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 1000
+  TVOC_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.TVOC
+    models:
+    - key: tvoc
+      values:
+        func: tvoc
+      options: 
+        sammpling: 60
+        ratio: 1000
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 560
+  HCHO_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.HCHO
+    models:
+    - key: hcho
+      values:
+        func: hcho
+      options: 
+        sammpling: 60
+        ratio: 1000
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 81
+  O3_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.O3
+    models:
+    - key: o3
+      values:
+        func: o3
+      options: 
+        sammpling: 60
+        ratio: 1000
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: 60

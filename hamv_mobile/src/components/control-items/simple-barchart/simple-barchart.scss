@@ -1,0 +1,68 @@
+simple-barchart {
+  $font-bold: 600;
+  $font-title: 1.7rem;
+  color: color($colors, warmGrey);
+
+  .basic-text {
+    font-size: $font-title;
+    font-weight: $font-bold;
+    margin-right: 8px;
+  }
+
+  .text-disabled {
+    color: color($colors, grey);
+  }
+
+  .main-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    .title-text {
+      @extend .main-block;
+      font-size: $font-title;
+      font-weight: $font-bold;
+      
+      .title-sub-text{
+        margin-left: 10px;
+      }
+
+      ion-icon {
+        font-size: $font-title + 0.9rem;
+        margin-right: 10px;
+        width: 2.2rem;
+      }
+    }
+
+    .value-block {
+      @extend .main-block;
+      justify-content: flex-end;
+
+      .item-text {
+        @extend .basic-text;
+      }
+
+      ion-icon {
+        font-size: $font-title + 0.9rem;
+      }
+    }
+  }
+
+  .chart-sub-block {
+    align-items: center;
+    .title-text {
+      font-size: $font-title;
+      font-weight: $font-bold;
+    }
+
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;   
+    }
+    .control-item-active {
+      display: none;
+    }
+  }
+}

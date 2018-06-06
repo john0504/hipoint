@@ -1,0 +1,43 @@
+aqi-text {
+  $font-bold: 700;
+  $font-title: 1.7rem;
+
+  .basic-text {
+    font-size: $font-title - 0.2rem;
+    font-weight: $font-bold;
+    margin-right: 8px;
+  }
+
+  .text-disabled {
+    color: color($colors, grey);
+  }
+
+  .main-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    .title-text {
+      margin-top: 20px;
+      font-size: $font-title - 0.3rem;
+      font-weight: $font-bold;
+    }
+
+    .value-block {
+      @extend .main-block;
+      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .item-text {
+        @extend .basic-text;
+      }
+
+      ion-icon {
+        font-size: $font-title + 0.9rem;
+        width: 20rem;
+      }
+    }
+  }
+}

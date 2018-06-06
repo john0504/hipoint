@@ -1,0 +1,11 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "./keystores/debug.keystore",
+            "storePassword": "android",
+            "alias": "androiddebugkey",
+            "password" : "android",
+            "keystoreType": ""
+        }
+    }
+}

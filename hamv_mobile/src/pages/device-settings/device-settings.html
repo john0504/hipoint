@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-title><font color="primary">{{ 'DEVICE_SETTINGS.SETTINGS' | translate }}</font></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="container" padding>
+    <div padding-horizontal class="safe-side">
+      <div>
+        <span class="control-item-text">{{ 'DEVICE_SETTINGS.DEVICE_NAME' | translate }}</span>
+        <ion-item>
+          <ion-input [(ngModel)]="deviceName" type="text">
+          </ion-input>
+        </ion-item>
+        <button ion-button color="primary" class="full-button" full round (click)="saveDevice()" [disabled]="!canSaveDeviceName()" margin-vertical>
+          {{ 'DEVICE_SETTINGS.SAVE' | translate }}
+        </button>
+      </div>
+      <div>
+        <span class="control-item-text">{{ 'DEVICE_SETTINGS.SOFTWARE_VERSION' | translate }}</span>
+        <p>{{ device?.profile?.module?.firmwareVersion }}</p>
+      </div>
+      <div>
+        <span class="control-item-text">{{ 'DEVICE_SETTINGS.MODEL' | translate }}</span>
+        <p>{{ device?.profile?.esh?.model }}</p>
+      </div>
+      <div>
+        <span class="control-item-text">{{ 'DEVICE_SETTINGS.SERIAL' | translate }}</span>
+        <p>{{ device?.profile?.module?.macAddress }}</p>
+      </div>
+    </div>
+    <div padding class="danger-side">            
+      <img height="80" src="assets/img/icon_delete.png">
+      <p align="center"><font size=2>{{ 'DEVICE_SETTINGS.IS_NOT_OWNER_NOTE' | translate }}</font></p>
+      <button ion-button class="full-button" full round icon-left color="warningRed" (click)="deleteDeviceConfirm()" margin-vertical>
+        {{ 'DEVICE_SETTINGS.DELETE_DEVICE' | translate }}
+      </button>
+    </div>
+  </div>
+  <extra-page-space></extra-page-space>
+</ion-content>

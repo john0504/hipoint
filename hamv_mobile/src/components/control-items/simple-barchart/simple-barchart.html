@@ -1,0 +1,17 @@
+<div class="main-block">
+  <span class="title-text" (click)="toggleDetails()">
+    <ion-icon [name]="state.currentValueItem?.icon"></ion-icon>
+    {{ title | translate }}
+    <!-- <font color="primary" *ngIf="!showDetails">▼</font> -->
+    <font class="title-sub-text" color="primary" *ngIf="showDetails">▲</font>
+  </span>
+  <div class="value-block" [ngClass]="{'text-disabled': disabled}">
+    <span class="item-text"><font [color]="fontColor">{{ (state?.currentValueItem?.text | translate) | replace: state.currentValueItem?.value }}</font></span>
+  </div>
+</div>
+<div class="chart-sub-block" *ngIf="showDetails">
+  <hr />
+  <span class="title-text">{{ title + ' : ' | translate }} {{ 'INFORMATION_MODEL.WEEK' | translate }}</span>
+  <img src="assets/img/loading.gif" *ngIf="showDetails && !barChart">
+  <canvas #barCanvas class="control-item-active"></canvas>
+</div>
