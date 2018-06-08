@@ -11,6 +11,7 @@ controlLayout:
   - HUMI_BARCHART
   - CO2_BARCHART
   - TVOC_BARCHART
+  - PAR_BARCHART
 scheduleLayout:
   primary:
   - TEMP_BARCHART
@@ -66,7 +67,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 35
+        threshold: 1000
   TVOC_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.TVOC
