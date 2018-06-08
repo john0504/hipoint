@@ -190,8 +190,9 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: 'Basic ' + token
         });
+        const params = `authorization=Basic ${token}`;
         // const url = `https://${this.baseUrl}${MuranoApiService.MURANO_API_VERSION}/session`;
-        const url = `https://${this.baseUrl}/devices/requestAuthorize.php`;
+        const url = `https://${this.baseUrl}/devices/requestAuthorize.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {
@@ -602,7 +603,8 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: 'Basic ' + token
         });
-        const url = `https://${this.baseUrl}/devices/requestAuthorize.php`;
+        const params = `authorization=Basic ${token}`;
+        const url = `https://${this.baseUrl}/devices/requestAuthorize.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {
@@ -626,7 +628,8 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: 'Basic ' + token
         });
-        const url = `https://${this.baseUrl}/devices/getByAuth.php`;
+        const params = `authorization=Basic ${token}`;
+        const url = `https://${this.baseUrl}/devices/getByAuth.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {
@@ -650,7 +653,8 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: 'Basic ' + token
         });
-        const url = `https://${this.baseUrl}/devices/historyByAuth.php`;
+        const params = `authorization=Basic ${token}&${body}`;
+        const url = `https://${this.baseUrl}/devices/historyByAuth.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {
@@ -674,7 +678,8 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: 'Basic ' + token
         });
-        const url = `https://${this.baseUrl}/devices/saveByAuth.php`;
+        const params = `authorization=Basic ${token}&${body}`;
+        const url = `https://${this.baseUrl}/devices/saveByAuth.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {
@@ -697,7 +702,8 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: 'Basic ' + token
         });
-        const url = `https://${this.baseUrl}/devices/deleteByAuth.php`;
+        const params = `authorization=Basic ${token}&${body}`;
+        const url = `https://${this.baseUrl}/devices/deleteByAuth.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {
@@ -720,7 +726,8 @@ export class MuranoApiService {
             'Content-Type': 'application/x-www-form-urlencoded',
             accessToken: accessToken
         });
-        const url = `https://${this.baseUrl}/devices/sensors/postRAW.php`;
+        const params = `accessToken=${accessToken}&${body}`;
+        const url = `https://${this.baseUrl}/devices/sensors/postRAW.php?${params}`;
         const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
         return this.executeHttpRequest(request)
             .then((res) => {

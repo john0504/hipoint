@@ -11,7 +11,7 @@
         </div>
       </ion-list>
     </div>
-    <p align="center"><a tappable ion-text (click)="goLogin()" color="bluish" margin-vertical>{{ 'APP_START.SIGN_IN_C' | translate }}</a></p>
+    <button ion-button color="primary" class="full-button" (click)="goLogin()" round full>{{ 'APP_START.SIGN_IN_C' | translate }}</button>
   </div>
 </ion-content>
 <ion-content *ngIf="isUserLoggedIn()">

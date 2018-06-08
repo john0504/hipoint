@@ -15,7 +15,6 @@ import { DeviceControlService } from '../../providers/device-control-service';
 import { ViewStateService } from '../../providers/view-state-service';
 import { defer } from 'rxjs/observable/defer';
 import { delay, repeatWhen } from 'rxjs/operators';
-import { FCM } from '@ionic-native/fcm';
 
 @IonicPage()
 @Component({
@@ -39,11 +38,9 @@ export class HomePage {
     public viewStateService: ViewStateService,
     public themeService: ThemeService,
     private appTasks: AppTasks,
-    private fcm: FCM,
   ) {
     this.subs = [];
     this.account$ = this.stateStore.account$;
-    fcm.subscribeToTopic('marketing');
   }
 
   ionViewDidEnter() {

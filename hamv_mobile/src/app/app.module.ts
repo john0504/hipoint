@@ -40,7 +40,6 @@ import { ThemeService } from '../providers/theme-service';
 import { UtilsProvider } from '../providers/utils-provider';
 
 import { AppEngineModule, ReduxModule } from 'app-engine';
-import { FCM } from '@ionic-native/fcm';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -84,7 +83,6 @@ export function createTranslateLoader(http: HttpClient) {
     Insomnia,
     SocialSharing,
     File,
-    FCM,
     // { provide: ErrorHandler, useClass: IonicErrorHandler },
     CheckNetworkService,
     DeviceConfigService,
