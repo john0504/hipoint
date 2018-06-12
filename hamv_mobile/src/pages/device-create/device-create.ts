@@ -16,6 +16,7 @@ import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { ThemeService } from '../../providers/theme-service';
 import { CheckNetworkService } from '../../providers/check-network';
 import { PopupService } from '../../providers/popup-service';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -43,6 +44,7 @@ export class DeviceCreatePage {
     public themeService: ThemeService,
     public viewCtrl: ViewController,
     private popupService: PopupService,
+    private storage: Storage,
   ) {
     this.subs = [];
     this.appName = this.appVersion.getAppName();
@@ -60,7 +62,15 @@ export class DeviceCreatePage {
     );
     let p = this.appTasks.requestAuthorizeTask()
       .then((accessToken) => {
+        this.storage.set("accessToken", accessToken);
         this.accessToken = accessToken;
+      })
+      .catch(() => {
+        this.storage.get("accessToken").then((accessToken) => {
+          if (accessToken) {
+            this.accessToken = accessToken;
+          }
+        });
       });
     this.popupService.toastPopup(p, null, {
       message: this.translate.instant('CHECK_NETWORKS.NOT_FOUND'),

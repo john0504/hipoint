@@ -15,6 +15,7 @@ import { DeviceControlService } from '../../providers/device-control-service';
 import { ViewStateService } from '../../providers/view-state-service';
 import { defer } from 'rxjs/observable/defer';
 import { delay, repeatWhen } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -38,6 +39,7 @@ export class HomePage {
     public viewStateService: ViewStateService,
     public themeService: ThemeService,
     private appTasks: AppTasks,
+    private storage: Storage,
   ) {
     this.subs = [];
     this.account$ = this.stateStore.account$;
@@ -60,6 +62,10 @@ export class HomePage {
     this.subs.push(
       this.getListService().subscribe()
     );
+    this.appTasks.requestAuthorizeTask()
+      .then((accessToken) => {
+        this.storage.set("accessToken", accessToken);
+      });
   }
 
   ionViewWillLeave() {

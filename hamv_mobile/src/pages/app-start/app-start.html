@@ -6,12 +6,13 @@
         <img src="assets/img/icon_ecobear.png">
       </div>
       <ion-list>
-        <button ion-button color="primary" class="full-button" (click)="goSignup()" round full>{{ 'APP_START.SIGN_UP_WITH_EMAIL' | translate }}</button>
+        <button ion-button color="primary" class="full-button" (click)="goLogin()" round full>{{ 'APP_START.SIGN_IN_C' | translate }}</button>
+        <!-- <button ion-button color="primary" class="full-button" (click)="goSignup()" round full>{{ 'APP_START.SIGN_UP_WITH_EMAIL' | translate }}</button> -->
         <div class="divider">
         </div>
       </ion-list>
     </div>
-    <button ion-button color="primary" class="full-button" (click)="goLogin()" round full>{{ 'APP_START.SIGN_IN_C' | translate }}</button>
+    <!-- <button ion-button color="primary" class="full-button" (click)="goLogin()" round full>{{ 'APP_START.SIGN_IN_C' | translate }}</button> -->
   </div>
 </ion-content>
 <ion-content *ngIf="isUserLoggedIn()">
@@ -46,7 +47,9 @@
       </ion-list>
     </form>
     <div>
-      <p align="center"><a ion-text (click)="goForgotPassword()" color="bluish" margin-vertical>{{ 'APP_START.FORGOT_PWD' | translate }}</a></p>
+      <p align="center">
+        <a ion-text (click)="goForgotPassword()" color="bluish" margin-vertical>{{ 'APP_START.FORGOT_PWD' | translate }}</a>
+      </p>
     </div>
     <div>
       <button ion-button color="primary" class="full-button" (click)="doLogout()" round full>{{ 'APP_START.LOG_OUT' | translate }}</button>

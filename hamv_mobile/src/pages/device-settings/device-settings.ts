@@ -268,7 +268,8 @@ export class DeviceSettingsPage {
   }
 
   private deleteDevice() {
-    this.appTasks.deleteByAuthTask(this.device.device)
-      .then(() => this.viewCtrl.dismiss());
+    this.appTasks.deleteByAuthTask(this.device.device);
+    this.viewCtrl.dismiss();
+      // .then(() => this.viewCtrl.dismiss());
   }
 }
