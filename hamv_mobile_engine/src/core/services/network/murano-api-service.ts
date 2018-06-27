@@ -696,6 +696,30 @@ export class MuranoApiService {
             });
     }
 
+    public saveByAuthLimit(token: string, uuid: string, cmd: string): Promise<any> {
+        const body = `uuid=${uuid}&writeLimit=${cmd}`;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: 'Basic ' + token
+        });
+        const params = `authorization=Basic ${token}&${body}`;
+        const url = `https://${this.baseUrl}/devices/saveByAuth.php?${params}`;
+        const request: HttpRequest<string> = new HttpRequest(REQUEST_METHOD.POST, url, body, { headers });
+        return this.executeHttpRequest(request)
+            .then((res) => {
+                return res.body;
+            })
+            .catch((e) => {
+                if (e instanceof HttpError) {
+                    let he: HttpError = e as HttpError;
+                    if (he.code === 0) {
+                        return Promise.reject(new NetworkError(he.message));
+                    }
+                }
+                return Promise.reject(e);
+            });
+    }
+
     public deleteByAuth(token: string, uuid: string): Promise<any> {
         const body = `uuid=${uuid}`;
         const headers = new HttpHeaders({

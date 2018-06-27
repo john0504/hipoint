@@ -58,6 +58,7 @@ import './app.extends';
 import {
   ButtonGroupWithToggle,
   RangeWithToggle,
+  TwoRangeWithToggle,
   LargeToggleWithRange,
   LargeToggle,
   SimpleButtonGroup,
@@ -88,6 +89,7 @@ export class MyApp implements OnInit, OnDestroy {
   appPages: Array<any> = [
     { title: 'APP.HOME', component: 'HomePage' },
     // { title: 'APP.MY_GROUPS', component: 'MyGroupsPage' },
+    { title: 'APP.LIMIT_SETTINGS', component: 'LimitSettingsPage' },
     { title: 'APP.SETTINGS', component: 'SettingsPage' },
     { title: 'APP.ABOUT', component: 'AboutPage' },
   ];
@@ -221,6 +223,7 @@ export class MyApp implements OnInit, OnDestroy {
   private registerComponents() {
     this.cp.registerComponent('button-group-with-toggle', ButtonGroupWithToggle);
     this.cp.registerComponent('range-with-toggle', RangeWithToggle);
+    this.cp.registerComponent('two-range-with-toggle', TwoRangeWithToggle);
     this.cp.registerComponent('large-toggle-with-range', LargeToggleWithRange);
     this.cp.registerComponent('large-toggle', LargeToggle);
     this.cp.registerComponent('button-group', SimpleButtonGroup);

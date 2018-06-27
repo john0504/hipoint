@@ -47,7 +47,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 28
+        threshold: [0,28]
   HUMI_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.HUMIDITY
@@ -71,7 +71,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 35
+        threshold: [0,35]
   PM10_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.PM10
@@ -84,7 +84,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 75
+        threshold: [0,75]
   CO_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.CO
@@ -97,7 +97,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 35
+        threshold: [0,35]
   CO2_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.CO2
@@ -110,7 +110,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 1000
+        threshold: [0,1000]
   TVOC_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.TVOC
@@ -124,7 +124,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 560
+        threshold: [0,560]
   HCHO_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.HCHO
@@ -138,7 +138,7 @@ components:
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 81
+        threshold: [0,81]
   O3_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.O3
@@ -148,8 +148,7 @@ components:
         func: o3
       options: 
         sammpling: 60
-        ratio: 1000
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
         fontColor: '#f53d3d'
-        threshold: 60
+        threshold: [0,60]

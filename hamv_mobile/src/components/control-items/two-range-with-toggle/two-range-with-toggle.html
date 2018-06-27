@@ -1,0 +1,26 @@
+<div class="main-block">
+  <span class="title-text">
+    <ion-icon [name]="rangeState.currentValueItem[0]?.icon"></ion-icon>
+    {{ title | translate }}
+  </span>
+  <div class="toggle-block">
+    <div class="toggle-status" [ngClass]="{'text-disabled': disabled}">
+      <span class="item-text">{{ (toggleState?.currentValueItem?.text | translate) | replace: toggleState?.currentValueItem?.value }}</span>
+    </div>
+    <ion-toggle [(ngModel)]="toggleState.currentState" (ngModelChange)="sendToggleValue()" [color]="color" [disabled]="disabled || toggleState.disableState"></ion-toggle>
+  </div>
+</div>
+<div *ngIf="toggleState.trueValueItem.value === '*' ? toggleState.currentState : !toggleState.currentState" class="sub-block"
+  margin-top>
+  <div class="sub-block2">
+    <div class="value-block-left" [ngClass]="{'text-disabled': disabled}">
+      <span class="item-text">{{ (rangeState?.currentValueItem[0]?.text | translate) | replace: rangeState?.currentValueItem[0]?.value }}</span>
+    </div>
+    <div class="value-block-right" [ngClass]="{'text-disabled': disabled}">
+      <span class="item-text">{{ (rangeState?.currentValueItem[1]?.text | translate) | replace: rangeState?.currentValueItem[1]?.value }}</span>
+    </div>
+  </div>
+  <ion-range dualKnobs="true" (ionBlur)="sendRangeValue($event)" (ionChange)="rangeValueChanges($event)" [(ngModel)]="rangeState.currentIndex"
+    [color]="color" [disabled]="disabled || rangeState.disableState" [max]="rangeState.status.max" [min]="rangeState.status.min"
+    [step]="rangeState.status.step" class="range-status" snaps></ion-range>
+</div>

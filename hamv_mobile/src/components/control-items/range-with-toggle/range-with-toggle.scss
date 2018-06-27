@@ -41,7 +41,9 @@ range-with-toggle {
         }
 
         ion-icon {
-          font-size: 2.2rem;
+          font-size: $font-title + 0.9rem;
+          margin-right: 10px;
+          width: 2.2rem;
         }
       }
     }
@@ -66,6 +68,8 @@ range-with-toggle {
       }
       ion-icon {
         font-size: $font-title + 0.9rem;
+        margin-right: 10px;
+        width: 2.2rem;
       }
     }
   }

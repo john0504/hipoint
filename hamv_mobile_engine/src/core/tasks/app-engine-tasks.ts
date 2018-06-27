@@ -421,6 +421,19 @@ export class AppEngineTasks {
             })
     }
 
+    public saveByAuthLimitTask(uuid: string, alias: string): Promise<any> {
+        let account;
+        return this.accountService.getAccount()
+            .then((user) => {
+                account = user;
+                return this.accountService.getPassword(user);
+            })
+            .then((password) => {
+                let token = btoa(account.account + ':' + password);
+                return this.muranoApiService.saveByAuthLimit(token, uuid, alias);
+            })
+    }
+
     public deleteByAuthTask(uuid: string): Promise<any> {
         let account;
         return this.accountService.getAccount()

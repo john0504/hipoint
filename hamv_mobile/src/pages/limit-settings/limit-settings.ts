@@ -15,14 +15,13 @@ import { DeviceControlService } from '../../providers/device-control-service';
 import { ViewStateService } from '../../providers/view-state-service';
 import { defer } from 'rxjs/observable/defer';
 import { delay, repeatWhen } from 'rxjs/operators';
-import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-limit-settings',
+  templateUrl: 'limit-settings.html'
 })
-export class HomePage {
+export class LimitSettingsPage {
   private subs: Array<Subscription>;
   private account$: Observable<any>;
   _deviceList = [];
@@ -39,7 +38,6 @@ export class HomePage {
     public viewStateService: ViewStateService,
     public themeService: ThemeService,
     private appTasks: AppTasks,
-    private storage: Storage,
   ) {
     this.subs = [];
     this.account$ = this.stateStore.account$;
@@ -62,10 +60,6 @@ export class HomePage {
     this.subs.push(
       this.getListService().subscribe()
     );
-    this.appTasks.requestAuthorizeTask()
-      .then((accessToken) => {
-        this.storage.set("accessToken", accessToken);
-      });
   }
 
   ionViewWillLeave() {
@@ -77,10 +71,6 @@ export class HomePage {
 
   isIOS(): boolean {
     return this.platform.is('ios');
-  }
-
-  goAddDevice() {
-    this.navCtrl.push('DeviceCreatePage');
   }
 
   refreshData() {
@@ -133,6 +123,17 @@ export class HomePage {
   }
 
   private makeDeviceItem(device, isShowDetails): any {
+    let sensorLimit = device.sensors;
+    Object.keys(sensorLimit).forEach(sensor => {
+      sensorLimit[sensor] = [0, 65535];
+    });
+
+    if (device.sensorLimit) {
+      Object.keys(device.sensorLimit).forEach(sensor => {
+        sensorLimit[sensor] = device.sensorLimit[sensor];
+      });
+    }
+
     let deviceItem = {
       deviceName: device.alias,
       _device: {
@@ -140,7 +141,7 @@ export class HomePage {
         profile: {
           esh: {
             class: 0, esh_version: "4.0.0", device_id: device.productCode,
-            brand: device.vendorName, model: device.model
+            brand: device.vendorName, model: "setting-" + device.model.substring(4,7)
           },
           module: {
             firmwareVersion: device.wifiVersion, macAddress: device.uuid,
@@ -152,7 +153,7 @@ export class HomePage {
         },
         properties: { displayName: device.alias },
         fields: [],
-        status: device.sensors
+        status: sensorLimit
       },
       _deviceSn: device.uuid,
       viewState: { isConnected: this.getOnline(device.sensors.tick) },
@@ -173,7 +174,6 @@ export class HomePage {
 
   private updateViewState(deviceItem): any {
     let viewState: any = this.viewStateService.getViewState(deviceItem._deviceSn) || {};
-    viewState["sn"] = deviceItem._device.device;
     if (deviceItem && deviceItem._device && deviceItem._device.status) {
       for (let key in deviceItem._device.status) {
         if (this.deviceCtrlService.isAvailable(deviceItem._device.device, key)) {
@@ -252,6 +252,6 @@ export class HomePage {
   }
 
   isVisable(value) {
-    return Number(value) > -100;
+    return value != null;
   }
 }

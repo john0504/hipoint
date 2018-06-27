@@ -15,6 +15,8 @@ import mixpanel from 'mixpanel-browser';
 
 import { ThemeService } from '../../providers/theme-service';
 import { CheckNetworkService } from '../../providers/check-network';
+import { Storage } from '@ionic/storage';
+
 
 @IonicPage()
 @Component({
@@ -35,6 +37,7 @@ export class ProvisionDonePage {
     public params: NavParams,
     public navCtrl: NavController,
     public themeService: ThemeService,
+    private storage: Storage,
   ) {
     this.deviceSn = this.params.get('deviceSn');
     Logger.log('deviceSn => ', this.deviceSn);
@@ -48,6 +51,13 @@ export class ProvisionDonePage {
         this.unregister = this.platform.registerBackButtonAction(() => {
           Logger.log('Preventing users from pressing the hardware back button on the phone');
         }, 100);
+      });
+  }
+  
+  ionViewDidEnter() {    
+    this.appTasks.requestAuthorizeTask()
+      .then((accessToken) => {
+        this.storage.set("accessToken", accessToken);
       });
   }
 

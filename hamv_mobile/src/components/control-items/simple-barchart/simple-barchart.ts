@@ -34,6 +34,7 @@ export class SimpleBarchart extends UIComponentBase {
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
   lastTime: any;
+  xAxesTicks: any = { fontSize: 8 };
   yAxesTicks: any;
   showDetails: boolean = false;
   currentSn: string;
@@ -95,7 +96,7 @@ export class SimpleBarchart extends UIComponentBase {
     const currentDate: Date = new Date();
     const timeNow = currentDate.getTime();
     this.storage.get(deviceSn + 'lastTime').then((lastTime) => {
-      if (!lastTime || timeNow - 60 *60 * 1000 > lastTime) {
+      if (!lastTime || timeNow - 60 * 60 * 1000 > lastTime) {
         this.storage.set(deviceSn + 'lastTime', timeNow);
         this.historyByAuthTask(deviceSn, field, options);
       } else {
@@ -105,7 +106,7 @@ export class SimpleBarchart extends UIComponentBase {
           } else {
             let ratio = options && options.ratio ? options.ratio : 1;
             result.forEach(data => {
-              let time = data.time.substring(5, 10);
+              let time = data.time.substring(5, 16);
               let value = data[field] / ratio;
               if (value > -30000) {
                 datas.labels.push(time);
@@ -120,6 +121,9 @@ export class SimpleBarchart extends UIComponentBase {
               data: datas,
               options: {
                 scales: {
+                  xAxes: [{
+                    ticks: this.xAxesTicks
+                  }],
                   yAxes: [{
                     ticks: this.yAxesTicks
                   }]
@@ -147,9 +151,12 @@ export class SimpleBarchart extends UIComponentBase {
     this.currentSn = currentValueState.sn;
     this.currentKey = key;
     this.currentOption = model.options;
-    const threshold: number = model.options && model.options.threshold ? model.options.threshold : 32768;
-    if (model.options) {
-      if (this.state.currentValueItem.value >= threshold) {
+
+    const threshold: number[] = model.options.threshold;
+    // const threshold: number[] = currentValueState[model.options.threshold];
+    // const threshold: number = model.options && model.options.threshold ? model.options.threshold : 32768;
+    if (model.options && model.options.threshold && threshold[0] != -32767) {
+      if (this.state.currentValueItem.value >= threshold[1] || this.state.currentValueItem.value < threshold[0]) {
         this.fontColor = model.options.fontColor;
       } else {
         this.fontColor = "#000000";

@@ -332,6 +332,10 @@ export class AppEngine {
         return this.appEngineTasks.saveByAuthTask(uuid, alias);
     }
 
+    public saveByAuthLimit(uuid: string, alias: string): Promise<any> {
+        return this.appEngineTasks.saveByAuthLimitTask(uuid, alias);
+    }
+
     public deleteByAuth(uuid: string): Promise<any> {
         return this.appEngineTasks.deleteByAuthTask(uuid);
     }

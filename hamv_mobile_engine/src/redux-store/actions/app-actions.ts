@@ -144,6 +144,8 @@ export class AppActions {
     static HISTORY_BY_AUTH_DONE: string = 'history-by-auth-done';
     static SAVE_BY_AUTH: string = 'save-by-auth';
     static SAVE_BY_AUTH_DONE: string = 'save-by-auth-done';
+    static SAVE_BY_AUTH_LIMIT: string = 'save-by-auth-limit';
+    static SAVE_BY_AUTH_LIMIT_DONE: string = 'save-by-auth-limit-done';
     static DELETE_BY_AUTH: string = 'delete-by-auth';
     static DELETE_BY_AUTH_DONE: string = 'delete-by-auth-done';
     static POST_RAW: string = 'post-raw';

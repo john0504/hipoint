@@ -66,11 +66,11 @@ export class ToggleLogic extends LogicBase<ToggleLogicState> {
     public processUIState(currentValueState: any, key: string, model: ControlItemModel): ToggleLogicState {
         let v = currentValueState ? currentValueState[key] : undefined;
         if (this.state.trueValueItem.value === OUTLIER) {
-            this.state.currentState = v !== this.state.falseValueItem.value;
+            this.state.currentState = v != this.state.falseValueItem.value.toString();
         } else if (this.state.falseValueItem.value === OUTLIER) {
-            this.state.currentState = v === this.state.trueValueItem.value;
+            this.state.currentState = v == this.state.trueValueItem.value.toString();
         } else {
-            this.state.currentState = v === this.state.trueValueItem.value;
+            this.state.currentState = v == this.state.trueValueItem.value.toString();
         }
         this.state.currentValueItem = this.state.currentState ? this.state.trueValueItem : this.state.falseValueItem;
 

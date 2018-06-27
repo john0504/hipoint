@@ -761,6 +761,20 @@ export class AppTasks {
             });
     }
 
+    public saveByAuthLimitTask(uuid: string, alias: string): Promise<any> {
+        this.dispatch(AppActions.action(AppActions.SAVE_BY_AUTH_LIMIT));
+
+        return this.appEngine.saveByAuthLimit(uuid, alias)
+            .then((list) => {
+                this.dispatch(AppActions.action(AppActions.SAVE_BY_AUTH_LIMIT_DONE, list));
+                return list;
+            })
+            .catch((error) => {
+                this.dispatch(AppActions.action(AppActions.SAVE_BY_AUTH_LIMIT_DONE, error, true));
+                throw error;
+            });
+    }
+
     public deleteByAuthTask(uuid: string): Promise<any> {
         this.dispatch(AppActions.action(AppActions.DELETE_BY_AUTH));
 

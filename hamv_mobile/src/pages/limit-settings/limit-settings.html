@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <font color="primary">{{ 'APP.LIMIT_SETTINGS' | translate }}</font>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="!_deviceList || _deviceList.length === 0" class="empty" padding>
+    <div class="no-groups-image">
+      <ion-icon isActive="false" name="add"></ion-icon>
+    </div>
+    <h4>{{ 'MY_DEVICES.EMPTY_DASHBOARD' | translate }}</h4>
+  </div>
+  <ion-card [ngClass]="{'is-owner': isOwner}" *ngFor="let deviceItem of _deviceList">
+    <ion-card-content>
+      <div class="popit-title" margin-bottom>
+        <ion-card-title (click)="toggleDetails(deviceItem)">
+          <font color="white"> {{ deviceItem?._device?.properties?.displayName || deviceItem?._device?.profile?.esh?.model }}</font>
+          <font class="popit-sub-title" color="white" *ngIf="!deviceItem.showDetails">▼</font>
+          <font class="popit-sub-title" color="white" *ngIf="deviceItem.showDetails">▲</font>
+        </ion-card-title>
+      </div>
+      <br>
+      <br>
+      <div *ngFor="let m of deviceItem.popitPopular; let i = index;">
+        <ui-component (exoChange)="sendCommands(deviceItem,$event)" [(ngModel)]="deviceItem.viewState"
+          [model]="m" color="white"></ui-component>
+        <div class="control-item-divider" *ngIf="i < deviceItem.popitPopular.length - 1">
+          <br>
+        </div>
+      </div>
+      <div class="popit-content" *ngIf="deviceItem.showDetails">
+        <div class="control-item-divider-first">
+        </div>
+        <div *ngFor="let m of deviceItem.popitExpanded; let j = index;">
+          <ui-component (exoChange)="sendCommands(deviceItem,$event)" [(ngModel)]="deviceItem.viewState"
+            [model]="m" color="white" *ngIf="isVisable(deviceItem.viewState[m.models[0].key])"></ui-component>
+          <div class="control-item-divider" *ngIf="isVisable(deviceItem.viewState[m.models[0].key]) && j < deviceItem.popitExpanded.length - 1"></div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

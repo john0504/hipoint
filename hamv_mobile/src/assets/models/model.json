@@ -1,14 +1,27 @@
 {
   "ECO-008": {
-    "lastModified": 1525833080286,
+    "lastModified": 1530064349286,
     "name": "ECO-008.yaml",
     "size": 3573,
-    "timestamp": 1527043630422
+    "timestamp": 1530064349286
   },
   "ECO-009": {
-    "lastModified": 1525833080286,
+    "lastModified": 1530064349286,
     "name": "ECO-009.yaml",
     "size": 2110,
-    "timestamp": 1527043630422
+    "timestamp": 1530064349286
+  },
+  
+  "setting-008": {
+    "lastModified": 1530064349286,
+    "name": "setting-008.yaml",
+    "size": 3573,
+    "timestamp": 1530064349286
+  },
+  "setting-009": {
+    "lastModified": 1530064349286,
+    "name": "setting-009.yaml",
+    "size": 2110,
+    "timestamp": 1530064349286
   }
 }

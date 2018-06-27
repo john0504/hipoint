@@ -1,5 +1,6 @@
 export { ButtonGroupWithToggle } from './button-group-with-toggle/button-group-with-toggle';
 export { RangeWithToggle } from './range-with-toggle/range-with-toggle';
+export { TwoRangeWithToggle } from './two-range-with-toggle/two-range-with-toggle';
 export { LargeToggleWithRange } from './large-toggle-with-range/large-toggle-with-range';
 export { LargeToggle } from './large-toggle/large-toggle';
 export { SimpleButtonGroup } from './simple-button-group/simple-button-group';

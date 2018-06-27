@@ -1,0 +1,102 @@
+two-range-with-toggle {
+  $font-bold: 600;
+  $font-title: 1.7rem;
+  color: color($colors, white);
+
+  .basic-text {
+    font-size: $font-title;
+    font-weight: $font-bold;
+    margin-right: 8px;
+  }
+
+  .text-disabled {
+    color: color($colors, grey);
+  }
+
+  .main-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    .title-text {
+      @extend .main-block;
+      font-size: $font-title;
+      font-weight: $font-bold;
+    }
+    ion-icon {
+      font-size: $font-title + 0.9rem;
+      margin-right: 10px;
+      width: 2.2rem;
+    }
+    .toggle-block {
+      @extend .main-block;
+      justify-content: flex-end;
+
+      ion-toggle {
+        padding-left: 8px;
+      }
+
+      .toggle-status {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .item-text {
+          font-size: 1.5rem;
+          font-weight: 500;
+          margin-right: 8px;
+        }
+
+        ion-icon {
+          font-size: $font-title + 0.9rem;
+          margin-right: 10px;
+          width: 2.2rem;
+        }
+      }
+    }
+  }
+  .sub-block { 
+    .range-status {
+      .range-tick {
+        display: none;
+      }
+      .range-bar {
+        border-radius: 4px;
+      }
+      .range-knob {
+        outline: none;
+      }
+    }
+    .sub-block2 {   
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      .value-block-left {
+        @extend .main-block;
+        justify-content: space-between;
+        .item-text {
+          @extend .basic-text;
+        }
+        ion-icon {
+          font-size: $font-title + 0.9rem;
+          margin-right: 10px;
+          width: 2.2rem;
+        }
+      }
+      .value-block-right {
+        @extend .main-block;
+        justify-content: flex-end;
+        .item-text {
+          @extend .basic-text;
+        }
+        ion-icon {
+          font-size: $font-title + 0.9rem;
+          margin-right: 10px;
+          width: 2.2rem;
+        }
+      }
+    }    
+  }
+}

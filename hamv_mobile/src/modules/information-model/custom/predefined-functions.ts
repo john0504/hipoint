@@ -207,7 +207,7 @@ export const functionMap = {
     }
     return {
       value: val,
-      text: round(val / 1000, 3) + ' μmol/m²s',
+      text: round(val, 2) + ' μmol/m²s',
       icon: 'par-icon',
     };
   },

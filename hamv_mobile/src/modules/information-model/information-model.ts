@@ -24,14 +24,14 @@ export interface ComponentModel {
 export interface ControlItemModel {
     key: string;
     values?: Array<ValueItem> | UIOptions;
-    default: number;
+    default: any;
     dependency?: Array<Rule>;
     disable?: Array<Rule>;
     options?: any;
 }
 
 export interface ValueItem {
-    value: number | string;
+    value: any;
     text: string;
     icon?: string;
     fontColor? :string;
