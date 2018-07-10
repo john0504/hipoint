@@ -83,7 +83,6 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="ShowSplashScreenSpinner" value="true" />
     <engine name="android" spec="^6.4.0" />
-    <engine name="ios" spec="4.5.4" />
     <plugin name="cordova-open-native-settings" spec="^1.5.0" />
     <plugin name="cordova-plugin-advanced-http" spec="^1.11.0" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
@@ -123,4 +122,5 @@
         <variable name="DEEPLINK_5_HOST" value=" " />
     </plugin>
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>
