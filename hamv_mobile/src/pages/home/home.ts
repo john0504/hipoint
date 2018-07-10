@@ -154,6 +154,7 @@ export class HomePage {
         fields: [],
         status: device.sensors
       },
+      sensorLimit: device.sensorLimit,
       _deviceSn: device.uuid,
       viewState: { isConnected: this.getOnline(device.sensors.tick) },
       showDetails: isShowDetails,
@@ -173,7 +174,8 @@ export class HomePage {
 
   private updateViewState(deviceItem): any {
     let viewState: any = this.viewStateService.getViewState(deviceItem._deviceSn) || {};
-    viewState["sn"] = deviceItem._device.device;
+    viewState.sn = deviceItem._device.device;
+    viewState.sensorLimit = deviceItem.sensorLimit;
     if (deviceItem && deviceItem._device && deviceItem._device.status) {
       for (let key in deviceItem._device.status) {
         if (this.deviceCtrlService.isAvailable(deviceItem._device.device, key)) {

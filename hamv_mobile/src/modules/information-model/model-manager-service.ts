@@ -35,7 +35,7 @@ export class ModelManagerService {
   private modelDictionaries: Map<string, ContainerModel>;
 
   private get baseUrl() {
-    return `http://${this.appEngine.getBaseUrl()}`;
+    return `https://${this.appEngine.getBaseUrl()}`;
   }
 
   constructor(

@@ -117,7 +117,7 @@ export class SimpleBarchart extends UIComponentBase {
             });
             datas.datasets.push(dataset);
             this.barChart = new Chart(this.barCanvas.nativeElement, {
-              type: 'bar',
+              type: 'line',
               data: datas,
               options: {
                 scales: {
@@ -152,11 +152,12 @@ export class SimpleBarchart extends UIComponentBase {
     this.currentKey = key;
     this.currentOption = model.options;
 
-    const threshold: number[] = model.options.threshold;
-    // const threshold: number[] = currentValueState[model.options.threshold];
-    // const threshold: number = model.options && model.options.threshold ? model.options.threshold : 32768;
-    if (model.options && model.options.threshold && threshold[0] != -32767) {
-      if (this.state.currentValueItem.value >= threshold[1] || this.state.currentValueItem.value < threshold[0]) {
+    let threshold: number[] = [0, 65535];
+    if (currentValueState.sensorLimit && currentValueState.sensorLimit[key]) {
+      threshold = currentValueState.sensorLimit[key];
+    }
+    if (model.options && threshold[1] != 65535) {
+      if (this.state.currentValueItem.value >= threshold[1]) {
         this.fontColor = model.options.fontColor;
       } else {
         this.fontColor = "#000000";

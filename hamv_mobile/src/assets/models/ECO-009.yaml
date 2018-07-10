@@ -9,6 +9,7 @@ controlLayout:
   secondary:
   - TEMP_BARCHART
   - HUMI_BARCHART
+  - PM25_BARCHART
   - CO2_BARCHART
   - TVOC_BARCHART
   - PAR_BARCHART
@@ -55,6 +56,19 @@ components:
         sammpling: 60
         backgroundColor: "rgba(255, 99, 132, 0.2)"
         borderColor: "rgba(255, 99, 132, 1)"
+  PM25_BARCHART:
+    type: barchart
+    title: INFORMATION_MODEL.PM25
+    models:
+    - key: pm25
+      values:
+        func: pm25
+      options: 
+        sammpling: 60
+        backgroundColor: "rgba(255, 99, 132, 0.2)"
+        borderColor: "rgba(255, 99, 132, 1)"
+        fontColor: '#f53d3d'
+        threshold: [0,35]
   CO2_BARCHART:
     type: barchart
     title: INFORMATION_MODEL.CO2
