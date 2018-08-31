@@ -29,7 +29,7 @@ components:
     - key: temperature
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,100]
@@ -46,7 +46,7 @@ components:
     - key: humidity
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,100]
@@ -63,7 +63,7 @@ components:
     - key: pm25
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,500]
@@ -80,7 +80,7 @@ components:
     - key: pm10
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,500]
@@ -97,7 +97,7 @@ components:
     - key: co
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,500]
@@ -114,7 +114,7 @@ components:
     - key: co2
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,5000]
@@ -131,7 +131,7 @@ components:
     - key: tvoc
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,3500]
@@ -148,7 +148,7 @@ components:
     - key: hcho
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,1600]
@@ -165,7 +165,7 @@ components:
     - key: o3
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,10]
@@ -182,7 +182,7 @@ components:
     - key: par
       values:
       - value: [0,65535]
-        text: 關閉
+        text: INFORMATION_MODEL.OFF
       - value: "*"
         text: ''
       default: [0,1000]

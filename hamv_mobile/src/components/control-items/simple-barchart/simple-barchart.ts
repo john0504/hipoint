@@ -69,6 +69,7 @@ export class SimpleBarchart extends UIComponentBase {
       from = Math.floor(timeNow / 1000) - 60 * 60 * 24 * 90;
     }
     const to = Math.floor(timeNow / 1000);
+    console.log("from:" + from + " & to:" + to);
 
     return this.appTasks.historyByAuthTask(deviceSn, from, to, group)
       .then((result: any) => {
@@ -106,10 +107,16 @@ export class SimpleBarchart extends UIComponentBase {
           } else {
             let ratio = options && options.ratio ? options.ratio : 1;
             result.forEach(data => {
-              let time = data.time.substring(5, 16);
+              const currentDate: Date = new Date();
+              currentDate.setTime(data.tick * 1000);
+              const month = getTimeString(currentDate.getMonth() + 1);
+              const date = getTimeString(currentDate.getDate());
+              const hour = getTimeString(currentDate.getHours());
+              const minute = getTimeString(currentDate.getMinutes());
+              const fulldate = `${month}-${date} ${hour}:${minute}`;
               let value = data[field] / ratio;
               if (value > -30000) {
-                datas.labels.push(time);
+                datas.labels.push(fulldate);
                 dataset.data.push(value);
                 dataset.backgroundColor.push(options && options.backgroundColor ? options.backgroundColor : "rgba(255, 99, 132, 0.2)");
                 dataset.borderColor.push(options && options.borderColor ? options.borderColor : "rgba(255, 99, 132, 1)");
@@ -169,4 +176,12 @@ export class SimpleBarchart extends UIComponentBase {
     if (index !== 0) return;
     this.state = this.logic.processDisableState(disableState, key, model);
   }
+}
+
+function getTimeString(value: number) {
+  let timeString = `${value}`;
+  if (timeString.length == 1) {
+    timeString = '0' + timeString;
+  }
+  return timeString;
 }
