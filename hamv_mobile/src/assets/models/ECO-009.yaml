@@ -4,10 +4,9 @@ familyMembers:
 - ECO-009.*
 controlLayout:
   primary:
-  - IAQ
+  - TEMP_BARCHART
   - TICK
   secondary:
-  - TEMP_BARCHART
   - HUMI_BARCHART
   - PM25_BARCHART
   - CO2_BARCHART
