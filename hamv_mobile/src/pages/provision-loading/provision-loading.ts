@@ -108,7 +108,8 @@ export class ProvisionLoadingPage {
 
   private callQueryDeviceStatus() {
     return this.queryDeviceStatus()
-      .pipe(repeatWhen(attampes => attampes.pipe(delay(15000))))
+      .pipe(repeatWhen(attampes => attampes.pipe(delay(20000))),
+        timeoutWith(5000, ErrorObservable.create(new TimeoutError('Device Status timeout'))))
       .subscribe((result) => {
         this.printLog(JSON.stringify(result) + "\r\n");
         if (result["Connect Status"] != null &&
