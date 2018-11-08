@@ -217,6 +217,20 @@ export class AppTasks {
             });
     }
 
+    public queryDeviceStatusTask(): Promise<any> {
+        this.dispatch(AppActions.action(AppActions.QUERY_DEVICE_STATUS));
+
+        return this.appEngine.queryDeviceStatus()
+            .then((deviceStatus) => {
+                this.dispatch(AppActions.action(AppActions.QUERY_DEVICE_STATUS_DONE, deviceStatus));
+                return deviceStatus;
+            })
+            .catch((error) => {
+                this.dispatch(AppActions.action(AppActions.QUERY_DEVICE_STATUS_DONE, error, true));
+                throw error;
+            });
+    }
+
     public fireApModeTask(ssid: string, password: string, security: string,
         url: string, provToken: string, updatePeriod: string, provisionType?: string): Promise<any> {
         this.dispatch(AppActions.action(AppActions.FIRE_AP_MODE));

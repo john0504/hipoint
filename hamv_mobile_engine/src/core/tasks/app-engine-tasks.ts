@@ -99,6 +99,10 @@ export class AppEngineTasks {
         return this.muranoApiService.queryDeviceInfo();
     }
 
+    public queryDeviceStatusTask(): Promise<any> {
+        return this.muranoApiService.queryDeviceStatus();
+    }
+
     public fireApModeTask(ssid: string, password: string, security: string,
         url: string, provToken: string, updatePeriod: string, provisionType?: string): Promise<any> {
         return this.muranoApiService.fireApMode(ssid, password, security, url, provToken, updatePeriod, provisionType);

@@ -352,6 +352,23 @@ export class MuranoApiService {
             });
     }
 
+    public queryDeviceStatus(): Promise<any> {
+        const scheme: string = this.useHttp ? 'http' : 'https';
+        return this.HTTP.acceptAllCerts(true)
+            .then(() => {
+                this.HTTP.setRequestTimeout(5);
+                return this.HTTP.get(`${scheme}://192.168.1.1:32051/status`, {}, {});
+            })
+            .then((res) => {
+                this.HTTP.acceptAllCerts(false);
+                return JSON.parse(res.data);
+            })
+            .catch((error) => {
+                this.HTTP.acceptAllCerts(false);
+                return Promise.reject(error);
+            });
+    }
+
     public fireApMode(ssid: string, password: string, security: string, url: string, provToken: string, updatePeriod: string, provisionType?: string): Promise<any> {
         const scheme: string = this.useHttp ? 'http' : 'https';
         const target = `${scheme}://192.168.1.1:32051/provision`;

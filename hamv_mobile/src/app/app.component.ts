@@ -50,6 +50,7 @@ import { PopupService } from '../providers/popup-service';
 import { ThemeService } from '../providers/theme-service';
 
 import { ssidConfirmReducer } from '../pages/ssid-confirm/ssid-confirm';
+import { wifiConfirmReducer } from '../pages/provision-loading/provision-loading';
 
 import { ComponentProvider, ModelManagerService } from '../modules/information-model';
 // import mixpanel from 'mixpanel-browser';
@@ -149,6 +150,7 @@ export class MyApp implements OnInit, OnDestroy {
     this.reduxModule.applyMiddleWare(middlewares);
     const pageReducers = {
       ssidConfirm: ssidConfirmReducer,
+      wifiConfirm: wifiConfirmReducer
     };
     this.reduxModule.configureStore(pageReducers);
     this.reduxModule.setLoginPage(MyModalWrapper);

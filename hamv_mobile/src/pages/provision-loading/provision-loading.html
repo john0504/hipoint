@@ -1,13 +1,17 @@
 <ion-header no-border>
   <ion-toolbar color="white">
-    <ion-title><font color="primary">{{ 'PROVISION_LOADING.ADD_PRODUCT' | translate: { productName: themeService.productName } }}</font></ion-title>
+    <ion-title>
+      <font color="primary">{{ 'PROVISION_LOADING.ADD_PRODUCT' | translate: { productName: themeService.productName }
+        }}</font>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div class="container">
     <div class="main">
       <h1 align="center">{{ 'PROVISION_LOADING.CONNECTING' | translate }}</h1>
-      <svg class="hint" width="367px" height="191px" viewBox="0 0 367 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg class="hint" width="367px" height="191px" viewBox="0 0 367 191" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
         <g id="Smart-Home-SV" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
           <g id="17-Add-Device-Connecting" transform="translate(-192.000000, -355.000000)">
             <g id="Connect-Cloud-Graphic" transform="translate(195.000000, 358.000000)">
@@ -15,12 +19,12 @@
                 id="small-cloud" stroke="#1F1F1F" stroke-width="4" stroke-linejoin="round"></path>
               <path d="M66.2910903,184.594861 L262.286158,184.594861 C278.913639,184.594861 292.388786,171.037699 292.388786,154.319764 C292.388786,137.597019 278.913639,124.044668 262.05655,124.049478 C262.726241,121.22066 263.089788,118.271568 263.089788,115.23588 C263.089788,94.1881206 246.122679,77.1286112 225.199607,77.1286112 C221.205376,77.1286112 217.359434,77.7540303 213.747884,78.9038393 C208.48124,34.4654048 170.897203,0 125.29122,0 C88.1951017,0 56.4038953,22.7989327 42.9909338,55.224509 L43.0369313,55.4850885 C17.8945572,64.9592976 0,89.3470602 0,117.940637 C0,154.763391 29.6816785,184.615127 66.2946627,184.615127 L66.2910903,184.594861 Z"
                 id="cloud" stroke="#1F1F1F" stroke-width="5" stroke-linejoin="round" transform="translate(146.194393, 92.307563) scale(-1, 1) translate(-146.194393, -92.307563) "></path>
-              <path class="primary" d="M229.888956,101.383312 C196.486535,67.962003 142.810608,67.4828491 110,100.309436" id="wave-3" stroke="#00BAFF"
-                stroke-width="7"></path>
-              <path class="primary" d="M210.086565,121.196131 C187.818284,98.9161241 152.034332,98.5953896 130.160594,120.480647" id="wave-2" stroke="#00BAFF"
-                stroke-width="7"></path>
-              <path class="primary" d="M189.275754,140 C178.141614,128.859996 160.249638,128.700279 149.312769,139.642907" id="wave-1" stroke="#00BAFF"
-                stroke-width="7"></path>
+              <path class="primary" d="M229.888956,101.383312 C196.486535,67.962003 142.810608,67.4828491 110,100.309436"
+                id="wave-3" stroke="#00BAFF" stroke-width="7"></path>
+              <path class="primary" d="M210.086565,121.196131 C187.818284,98.9161241 152.034332,98.5953896 130.160594,120.480647"
+                id="wave-2" stroke="#00BAFF" stroke-width="7"></path>
+              <path class="primary" d="M189.275754,140 C178.141614,128.859996 160.249638,128.700279 149.312769,139.642907"
+                id="wave-1" stroke="#00BAFF" stroke-width="7"></path>
             </g>
           </g>
         </g>
@@ -29,5 +33,8 @@
       <p align="center">{{ 'PROVISION_LOADING.SETUP_TIME' | translate }}</p>
     </div>
   </div>
+  <!-- <div>
+    <div class="col" *ngFor="let log of logs">{{log}}</div>
+  </div> -->
   <extra-page-space></extra-page-space>
 </ion-content>

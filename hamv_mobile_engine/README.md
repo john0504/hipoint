@@ -4,3 +4,4 @@
 1. npm i -g ionic rimraf
 2. npm install
 3. npm run build
+4. npm pack

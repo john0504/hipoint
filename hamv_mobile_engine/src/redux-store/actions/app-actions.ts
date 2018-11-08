@@ -51,6 +51,9 @@ export class AppActions {
     static QUERY_DEVICE_INFO: string = 'query-device-info';
     static QUERY_DEVICE_INFO_DONE: string = 'query-device-info-done';
 
+    static QUERY_DEVICE_STATUS: string = 'query-device-status';
+    static QUERY_DEVICE_STATUS_DONE: string = 'query-device-info-status';
+
     static FIRE_AP_MODE: string = 'fire-ap-mode';
     static FIRE_AP_MODE_DONE: string = 'fire-ap-mode-done';
 

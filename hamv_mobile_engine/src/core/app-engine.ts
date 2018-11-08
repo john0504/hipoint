@@ -145,6 +145,10 @@ export class AppEngine {
         return this.appEngineTasks.queryDeviceInfoTask();
     }
 
+    public queryDeviceStatus(): Promise<any> {
+        return this.appEngineTasks.queryDeviceStatusTask();
+    }
+
     public fireApMode(ssid: string, password: string, security: string,
         url: string, provToken: string, updatePeriod: string, provisionType?: string): Promise<any> {
         return this.appEngineTasks.fireApModeTask(ssid, password, security, url, provToken, updatePeriod, provisionType);
