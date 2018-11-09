@@ -108,8 +108,9 @@ export class ProvisionLoadingPage {
 
   private callQueryDeviceStatus() {
     return this.queryDeviceStatus()
-      .pipe(repeatWhen(attampes => attampes.pipe(delay(20000))),
-        timeoutWith(5000, ErrorObservable.create(new TimeoutError('Device Status timeout'))))
+      .pipe(
+        retryWhen(error => error.pipe(delay(3000))),
+        repeatWhen(attampes => attampes.pipe(delay(10000))))
       .subscribe((result) => {
         this.printLog(JSON.stringify(result) + "\r\n");
         if (result["Connect Status"] != null &&
@@ -122,10 +123,12 @@ export class ProvisionLoadingPage {
               .then(() => this.viewCtrl.dismiss());
           }
         }
-      }, (error) => {
-        // this.printLog(JSON.stringify(error) + "\r\n");        
-        this.subs.push(this.callQueryDeviceStatus());
-      });
+      }
+        // , (error) => {
+        //   // this.printLog(JSON.stringify(error) + "\r\n");        
+        //   this.subs.push(this.callQueryDeviceStatus());
+        // }
+      );
   }
 
   private queryDeviceStatus() {
