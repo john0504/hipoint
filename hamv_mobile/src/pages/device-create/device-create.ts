@@ -9,8 +9,10 @@ import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { defer } from 'rxjs/observable/defer';
 import { catchError, delay, repeatWhen, switchMap, first, map } from 'rxjs/operators';
+import { NgRedux } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
 
-import { AppTasks, StateStore } from 'app-engine';
+import { AppActions, AppTasks, ErrorsService, StateStore } from 'app-engine';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 
 import { ThemeService } from '../../providers/theme-service';
@@ -31,8 +33,11 @@ export class DeviceCreatePage {
   appName: Promise<string>;
   // alert: Alert;
   accessToken: string = "";
+  private deviceInfo$: Observable<any>;
+  deviceInfo;
 
   constructor(
+    private ngRedux: NgRedux<any>,
     private stateStore: StateStore,
     private appTasks: AppTasks,
     private translate: TranslateService,
@@ -45,9 +50,11 @@ export class DeviceCreatePage {
     public viewCtrl: ViewController,
     private popupService: PopupService,
     private storage: Storage,
+    private errorsService: ErrorsService,
   ) {
     this.subs = [];
     this.appName = this.appVersion.getAppName();
+    this.deviceInfo$ = this.ngRedux.select(['deviceCreate', 'deviceInfo']);
   }
 
   ionViewDidLoad() {
@@ -56,9 +63,19 @@ export class DeviceCreatePage {
 
   ionViewWillEnter() {
     this.subs.push(
+      this.errorsService.getSubject()
+        .subscribe(error => this.handleErrors(error))
+    );
+    this.subs.push(
       this.queryDeviceInfo()
         .pipe(repeatWhen(attampes => attampes.pipe(delay(3000))))
         .subscribe()
+    );
+    this.subs.push(
+      this.deviceInfo$
+        .subscribe(deviceInfo => {
+          this.deviceInfo = deviceInfo;
+        })
     );
     let p = this.appTasks.requestAuthorizeTask()
       .then((accessToken) => {
@@ -81,18 +98,18 @@ export class DeviceCreatePage {
   private queryDeviceInfo() {
     return defer(() => this.appTasks.queryDeviceInfoTask())
       .pipe(
-      switchMap(() =>
-        this.stateStore.account$
-          .pipe(
-          first(),
-          map(account => {
-            return true;
-          }),
-        )
-      ),
-      catchError(() => of(false)),
-      map(result => this.canContinue = result && this.accessToken != ""),
-    );
+        switchMap(() =>
+          this.stateStore.account$
+            .pipe(
+              first(),
+              map(account => {
+                return true;
+              }),
+            )
+        ),
+        catchError(() => of(false)),
+        map(result => this.canContinue = result && this.accessToken != ""),
+      );
   }
 
   ionViewDidLeave() {
@@ -116,9 +133,16 @@ export class DeviceCreatePage {
       duration: 3000
     });
   }
+  // error is an action
+  private handleErrors(error) {
+    switch (error.type) {
+      case AppActions.QUERY_DEVICE_INFO_DONE:
+        break;
+    }
+  }
 
   onNext() {
-    this.navCtrl.push('SsidConfirmPage', { accessToken: this.accessToken })
+    this.navCtrl.push('SsidConfirmPage', { accessToken: this.accessToken, deviceInfo: this.deviceInfo })
       .then(() => this.closePage());
   }
 
@@ -139,4 +163,20 @@ export class DeviceCreatePage {
   //     });
   //   }
   // }
+}
+
+const INITIAL_STATE = {
+  deviceInfo: null,
+};
+
+export function deviceCreateReducer(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case AppActions.QUERY_DEVICE_INFO_DONE:
+      if (!action.error) {
+        return Object.assign({}, state, { deviceInfo: action.payload, });
+      }
+      return state;
+    default:
+      return state;
+  }
 }

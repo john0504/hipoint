@@ -49,7 +49,7 @@ import { CheckNetworkService } from '../providers/check-network';
 import { PopupService } from '../providers/popup-service';
 import { ThemeService } from '../providers/theme-service';
 
-import { ssidConfirmReducer } from '../pages/ssid-confirm/ssid-confirm';
+import { deviceCreateReducer } from '../pages/device-create/device-create';
 import { wifiConfirmReducer } from '../pages/provision-loading/provision-loading';
 
 import { ComponentProvider, ModelManagerService } from '../modules/information-model';
@@ -149,7 +149,7 @@ export class MyApp implements OnInit, OnDestroy {
 
     this.reduxModule.applyMiddleWare(middlewares);
     const pageReducers = {
-      ssidConfirm: ssidConfirmReducer,
+      deviceCreate: deviceCreateReducer,
       wifiConfirm: wifiConfirmReducer
     };
     this.reduxModule.configureStore(pageReducers);

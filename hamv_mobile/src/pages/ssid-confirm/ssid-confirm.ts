@@ -7,13 +7,13 @@ import {
 } from 'ionic-angular';
 
 import { WifiSecurityType } from 'app-engine';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { defer } from 'rxjs/observable/defer';
-import { delay, repeatWhen } from 'rxjs/operators';
-import { NgRedux } from '@angular-redux/store';
+// import { defer } from 'rxjs/observable/defer';
+// import { delay, repeatWhen } from 'rxjs/operators';
+// import { NgRedux } from '@angular-redux/store';
 
-import { AppActions, AppTasks, ErrorsService } from 'app-engine';
+// import { AppActions, AppTasks, ErrorsService } from 'app-engine';
 
 import { ThemeService } from '../../providers/theme-service';
 import { CheckNetworkService } from '../../providers/check-network';
@@ -28,7 +28,7 @@ import { AppUtils } from '../../utils/app-utils';
 export class SsidConfirmPage {
 
   private subs: Array<Subscription>;
-  private deviceInfo$: Observable<any>;
+  // private deviceInfo$: Observable<any>;
   deviceInfo;
   selectAp;
   wifiAps;
@@ -44,9 +44,9 @@ export class SsidConfirmPage {
   updatePeriod: number = 60;
 
   constructor(
-    private ngRedux: NgRedux<any>,
-    private appTasks: AppTasks,
-    private errorsService: ErrorsService,
+    // private ngRedux: NgRedux<any>,
+    // private appTasks: AppTasks,
+    // private errorsService: ErrorsService,
     public checkNetworkService: CheckNetworkService,
     public navCtrl: NavController,
     public themeService: ThemeService,
@@ -54,7 +54,7 @@ export class SsidConfirmPage {
     public params: NavParams,
   ) {
     this.subs = [];
-    this.deviceInfo$ = this.ngRedux.select(['ssidConfirm', 'deviceInfo']);
+    // this.deviceInfo$ = this.ngRedux.select(['ssidConfirm', 'deviceInfo']);
     this.wifiAp = { ssid: '', password: '', sec: WifiSecurityType.WPA2 };
   }
 
@@ -121,36 +121,50 @@ export class SsidConfirmPage {
   ionViewDidLoad() {
     this.checkNetworkService.pause();
     this.accessToken = this.params.get('accessToken');
+    var deviceInfo = this.params.get('deviceInfo');
+    this.deviceInfo = deviceInfo;
+    if (!this.isSelectFocus && !this.useText) {
+      let _wifiAps = deviceInfo && deviceInfo.wifi ? deviceInfo.wifi : [];
+      _wifiAps = _wifiAps.sort((a, b) => AppUtils.compareWifiSignalStrength(a, b));
+      _wifiAps = JSON.parse(JSON.stringify(_wifiAps));
+      this.wifiAps = _wifiAps;
+      const _selectAp = _wifiAps.find(wifiAp => wifiAp.ssid === this.wifiAp.ssid);
+      if (_selectAp) {
+        this.selectAp = _selectAp;
+      } else if (this.selectAp) {
+        _wifiAps.push(this.selectAp);
+      }
+    }
   }
 
   ionViewDidEnter() {
-    this.subs.push(
-      this.errorsService.getSubject()
-        .subscribe(error => this.handleErrors(error))
-    );
-    this.subs.push(
-      this.queryDeviceInfo()
-        .pipe(repeatWhen(attampes => attampes.pipe(delay(10000))))
-        .subscribe()
-    );
-    this.subs.push(
-      this.deviceInfo$
-        .subscribe(deviceInfo => {
-          this.deviceInfo = deviceInfo;
-          if (!this.isSelectFocus && !this.useText) {
-            let _wifiAps = deviceInfo && deviceInfo.wifi ? deviceInfo.wifi : [];
-            _wifiAps = _wifiAps.sort((a, b) => AppUtils.compareWifiSignalStrength(a, b));
-            _wifiAps = JSON.parse(JSON.stringify(_wifiAps));
-            this.wifiAps = _wifiAps;
-            const _selectAp = _wifiAps.find(wifiAp => wifiAp.ssid === this.wifiAp.ssid);
-            if (_selectAp) {
-              this.selectAp = _selectAp;
-            } else if (this.selectAp) {
-              _wifiAps.push(this.selectAp);
-            }
-          }
-        })
-    );
+    // this.subs.push(
+    //   this.errorsService.getSubject()
+    //     .subscribe(error => this.handleErrors(error))
+    // );
+    // this.subs.push(
+    //   this.queryDeviceInfo()
+    //     .pipe(repeatWhen(attampes => attampes.pipe(delay(10000))))
+    //     .subscribe()
+    // );
+    // this.subs.push(
+    //   this.deviceInfo$
+    //     .subscribe(deviceInfo => {
+    //       this.deviceInfo = deviceInfo;
+    //       if (!this.isSelectFocus && !this.useText) {
+    //         let _wifiAps = deviceInfo && deviceInfo.wifi ? deviceInfo.wifi : [];
+    //         _wifiAps = _wifiAps.sort((a, b) => AppUtils.compareWifiSignalStrength(a, b));
+    //         _wifiAps = JSON.parse(JSON.stringify(_wifiAps));
+    //         this.wifiAps = _wifiAps;
+    //         const _selectAp = _wifiAps.find(wifiAp => wifiAp.ssid === this.wifiAp.ssid);
+    //         if (_selectAp) {
+    //           this.selectAp = _selectAp;
+    //         } else if (this.selectAp) {
+    //           _wifiAps.push(this.selectAp);
+    //         }
+    //       }
+    //     })
+    // );
   }
 
   ionViewWillLeave() {
@@ -168,35 +182,35 @@ export class SsidConfirmPage {
     return e1.ssid === e2.ssid;
   }
 
-  private queryDeviceInfo() {
-    return defer(() => this.appTasks.queryDeviceInfoTask());
-  }
+  // private queryDeviceInfo() {
+  //   return defer(() => this.appTasks.queryDeviceInfoTask());
+  // }
 
   // error is an action
-  private handleErrors(error) {
-    switch (error.type) {
-      case AppActions.QUERY_DEVICE_INFO_DONE:
-        break;
-    }
-  }
+  // private handleErrors(error) {
+  //   switch (error.type) {
+  //     case AppActions.QUERY_DEVICE_INFO_DONE:
+  //       break;
+  //   }
+  // }
 
   closePage() {
     this.viewCtrl.dismiss();
   }
 }
 
-const INITIAL_STATE = {
-  deviceInfo: null,
-};
+// const INITIAL_STATE = {
+//   deviceInfo: null,
+// };
 
-export function ssidConfirmReducer(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case AppActions.QUERY_DEVICE_INFO_DONE:
-      if (!action.error) {
-        return Object.assign({}, state, { deviceInfo: action.payload, });
-      }
-      return state;
-    default:
-      return state;
-  }
-}
+// export function ssidConfirmReducer(state = INITIAL_STATE, action) {
+//   switch (action.type) {
+//     case AppActions.QUERY_DEVICE_INFO_DONE:
+//       if (!action.error) {
+//         return Object.assign({}, state, { deviceInfo: action.payload, });
+//       }
+//       return state;
+//     default:
+//       return state;
+//   }
+// }
