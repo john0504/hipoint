@@ -747,6 +747,20 @@ export class AppTasks {
             });
     }
 
+    public getTokenTask(): Promise<any> {
+        this.dispatch(AppActions.action(AppActions.GET_TOKEN));
+
+        return this.appEngine.getToken()
+            .then((token) => {
+                this.dispatch(AppActions.action(AppActions.GET_TOKEN_DONE, token));
+                return token;
+            })
+            .catch((error) => {
+                this.dispatch(AppActions.action(AppActions.GET_TOKEN_DONE, error, true));
+                throw error;
+            });
+    }
+
     public historyByAuthTask(uuid: string, from: number, to: number, group: number): Promise<any> {
         this.dispatch(AppActions.action(AppActions.HISTORY_BY_AUTH));
 

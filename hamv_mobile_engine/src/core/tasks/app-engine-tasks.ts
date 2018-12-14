@@ -399,6 +399,18 @@ export class AppEngineTasks {
             })
     }
 
+    public getTokenTask(): Promise<string> {
+        let account;
+        return this.accountService.getAccount()
+            .then((user) => {
+                account = user;
+                return this.accountService.getPassword(user);
+            })
+            .then((password) => {
+                return "Basic " + btoa(account.account + ':' + password);
+            })
+    }
+
     public historyByAuthTask(uuid: string, from: number, to: number, group: number): Promise<any> {
         let account;
         return this.accountService.getAccount()

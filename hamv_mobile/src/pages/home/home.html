@@ -53,6 +53,9 @@
           <div class="control-item-divider" *ngIf="isVisable(deviceItem.viewState[m.models[0].key])"></div>
         </div>
         <div class="popit-other-items">
+          <button ion-button class="other-item" color="warmGrey" round (click)="openSpectrum(deviceItem)">
+            {{ 'POPIT_CONTAINER.SPECTRUM' | translate }}
+          </button>
           <button ion-button class="other-item" color="warmGrey" round (click)="openSettings(deviceItem)">
             {{ 'POPIT_CONTAINER.SETTINGS' | translate }}
           </button>

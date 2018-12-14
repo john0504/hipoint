@@ -272,7 +272,8 @@
     "SETTINGS": "Settings",
     "SHARE": "Share",
     "SHOW_INFO": "Your device is updating and will be temporarily unavailable until this process is complete.",
-    "UPDATING": "UPDATING..."
+    "UPDATING": "UPDATING...",
+    "SPECTRUM": "Spectrum"
   },
   "PROVISION_DONE": {
     "ADD_PRODUCT": "Add {{ productName }}",

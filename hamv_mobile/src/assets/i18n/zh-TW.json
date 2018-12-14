@@ -272,7 +272,8 @@
     "SETTINGS": "設定",
     "SHARE": "分享",
     "SHOW_INFO": "您的裝置正在更新中，直到更新完畢前，此裝置將會暫時無法使用。",
-    "UPDATING": "更新中..."
+    "UPDATING": "更新中...",
+    "SPECTRUM": "光譜"
   },
   "PROVISION_DONE": {
     "ADD_PRODUCT": "新增 {{ productName }}",

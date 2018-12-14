@@ -1,8 +1,14 @@
 cordova build --release android
 
-若已有keystore則跳過第二步
+若build失敗 試著刪除platform重新加入android
+
 keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000 
+若已有keystore則跳過第二步
+
+複製apk至與key相同目錄下
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-release-unsigned.apk alias_name
+
+hipoint1234
 
 zipalign -v 4 android-release-unsigned.apk HiPoint.apk

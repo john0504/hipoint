@@ -143,6 +143,8 @@ export class AppActions {
     static REQUEST_AUTHORIZE_DONE: string = 'request-authorize-done';
     static GET_BY_AUTH: string = 'get-by-auth';
     static GET_BY_AUTH_DONE: string = 'get-by-auth-done';
+    static GET_TOKEN: string = 'get-token';
+    static GET_TOKEN_DONE: string = 'get-token';    
     static HISTORY_BY_AUTH: string = 'history-by-auth';
     static HISTORY_BY_AUTH_DONE: string = 'history-by-auth-done';
     static SAVE_BY_AUTH: string = 'save-by-auth';

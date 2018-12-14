@@ -328,6 +328,10 @@ export class AppEngine {
         return this.appEngineTasks.getByAuthTask();
     }
 
+    public getToken(): Promise<string> {
+        return this.appEngineTasks.getTokenTask();
+    }
+
     public historyByAuth(uuid: string, from: number, to: number, group: number): Promise<any> {
         return this.appEngineTasks.historyByAuthTask(uuid, from, to, group);
     }

@@ -16,6 +16,7 @@ import { ViewStateService } from '../../providers/view-state-service';
 import { defer } from 'rxjs/observable/defer';
 import { delay, repeatWhen } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { UtilsProvider } from '../../providers/utils-provider';
 
 @IonicPage()
 @Component({
@@ -40,6 +41,7 @@ export class HomePage {
     public themeService: ThemeService,
     private appTasks: AppTasks,
     private storage: Storage,
+    private utilsProvider: UtilsProvider,
   ) {
     this.subs = [];
     this.account$ = this.stateStore.account$;
@@ -49,8 +51,8 @@ export class HomePage {
     this.subs.push(
       this.account$
         .pipe(
-        tap(account => this.isLoggedIn = account && account.isLoggedIn),
-        pairwise()
+          tap(account => this.isLoggedIn = account && account.isLoggedIn),
+          pairwise()
         )
         .subscribe(([oldAccount, newAccount]) => {
           const oldLoginState = oldAccount && oldAccount.isLoggedIn;
@@ -90,8 +92,8 @@ export class HomePage {
   getListService() {
     return defer(() => this.getListServiceTask())
       .pipe(
-      repeatWhen(attampes => attampes.pipe(delay(60000))
-      ));
+        repeatWhen(attampes => attampes.pipe(delay(60000))
+        ));
   }
 
   private getListServiceTask(): Promise<any> {
@@ -255,5 +257,15 @@ export class HomePage {
 
   isVisable(value) {
     return Number(value) > -100;
+  }
+
+  openSpectrum(deviceItem) {
+    this.appTasks.getTokenTask()
+      .then((token) => {
+        const uuid = deviceItem._device.profile.module.macAddress;
+        const url = `https://api.ecobear.tw/html/spectrum.php?authorization=${token}&uuid=${uuid}`;        
+        // console.log(url);
+        this.utilsProvider.openLink(url);
+      });
   }
 }
