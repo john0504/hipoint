@@ -59,7 +59,7 @@
     "@ionic-native-mocks/facebook": "^2.0.6",
     "@ionic-native-mocks/http": "^2.0.6",
     "@types/crypto-js": "^3.1.33",
-    "@types/jasmine": "^2.8.3",
+    "@types/jasmine": "2.8.4",
     "@types/json-merge-patch": "0.0.4",
     "@types/lodash": "4.14.61",
     "@types/node": "^9.3.0",
