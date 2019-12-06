@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="20005" id="com.hipoint.ass" version="2.0.20190115" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HiPoint</name>
+<widget android-versionCode="20007" id="com.hipoint.ass" version="2.0.20191206" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>HiPoint KLIMALOG</name>
     <description>Micro-Vertical Home Automation App developed by Exosite.</description>
     <author email="support@exosite.com">Exosite</author>
     <content src="index.html" />

@@ -450,7 +450,7 @@ export class MuranoApiService {
 
     private executeHttpRequest(httpRequest: HttpRequest<string>): Promise<any> {
         return this.http.request(httpRequest)
-            .pipe(timeoutWith(10000, ErrorObservable.create(new TimeoutError('Request timeout'))))
+            .pipe(timeoutWith(60000, ErrorObservable.create(new TimeoutError('Request timeout'))))
             .toPromise()
             .catch((err) => {
                 if (err instanceof TimeoutError) {
